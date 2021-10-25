@@ -133,7 +133,7 @@ CREATE TABLE downloads
 						contextWithTimeout, _ := context.WithTimeout(ctx, time.Second*30)
 						size, duration, err := measureDownload(contextWithTimeout, dialer, nodeUrl, x.GetLimit(), k.Info.PiecePrivateKey)
 						if err != nil {
-							return err
+							log.Warn().Msgf("Error on downloading piece from %s %v", address, err)
 						}
 
 						err = updateDb(db, key, size, duration, host)
