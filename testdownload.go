@@ -130,7 +130,8 @@ CREATE TABLE downloads
 							ID:      x.GetLimit().StorageNodeId,
 							Address: address,
 						}
-						size, duration, err := measureDownload(ctx, dialer, nodeUrl, x.GetLimit(), k.Info.PiecePrivateKey)
+						contextWithTimeout, _ := context.WithTimeout(ctx, time.Second*30)
+						size, duration, err := measureDownload(contextWithTimeout, dialer, nodeUrl, x.GetLimit(), k.Info.PiecePrivateKey)
 						if err != nil {
 							return err
 						}
