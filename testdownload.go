@@ -124,7 +124,7 @@ CREATE TABLE downloads
 						return err
 					}
 					lastCheck := time.Now().Sub(lastData)
-					if lastCheck > time.Hour*24 {
+					if lastCheck > time.Hour*168 {
 
 						nodeUrl := storj.NodeURL{
 							ID:      x.GetLimit().StorageNodeId,
